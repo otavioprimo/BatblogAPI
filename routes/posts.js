@@ -99,13 +99,13 @@ router.route('/comment')
         var dia = date.getDate();
         var mes = date.getMonth() + 1;
         var ano = date.getFullYear();
-        var hora = date.getHours();
+        var hora = date.getHours() - 3;
         var min = date.getMinutes();
 
         var fullTime = dia + '/' + mes + '/' + ano + ' ' + hora + ':' + min;
 
         Posts.findByIdAndUpdate(req.body._id, {
-            $push: { "comments": { user_id: req.body.user_id, message: req.body.message, user_name: req.body.name, created: fullDate } }
+            $push: { "comments": { user_id: req.body.user_id, message: req.body.message, user_name: req.body.name, created: fullTime } }
         }, {
                 safe: true,
                 new: true
